@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Auto-Save Settings</title>
+  <link rel="stylesheet" href="taskpane.css"/>
+</head>
+<body>
+  <div class="container">
+    <h1>Auto-Save Settings</h1>
+
+    <div class="field">
+      <label for="interval">Save every</label>
+      <div class="input-row">
+        <input type="number" id="interval" min="1" max="60" value="5"/>
+        <span class="unit">minutes</span>
+      </div>
+    </div>
+
+    <button id="save-btn">Apply</button>
+
+    <p id="status" class="status"></p>
+
+    <hr/>
+
+    <div class="last-saved-row">
+      <span class="label">Last saved:</span>
+      <span id="last-saved" class="value">—</span>
+    </div>
+
+    <button id="save-now-btn" class="secondary">Save Now</button>
+  </div>
+
+  <script src="https://appsforoffice.microsoft.com/lib/1/hosted/office.js"></script>
+  <script src="commands.js"></script>
+  <script src="taskpane.js"></script>
+</body>
+</html>

@@ -1,0 +1,109 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "Segoe UI", system-ui, sans-serif;
+  font-size: 14px;
+  color: #333;
+  background: #fff;
+}
+
+.container {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+h1 {
+  font-size: 16px;
+  font-weight: 600;
+  color: #1a1a1a;
+}
+
+.field label {
+  display: block;
+  margin-bottom: 6px;
+  font-weight: 500;
+}
+
+.input-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+input[type="number"] {
+  width: 70px;
+  padding: 6px 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+input[type="number"]:focus {
+  outline: none;
+  border-color: #2b579a;
+  box-shadow: 0 0 0 2px rgba(43, 87, 154, 0.2);
+}
+
+.unit {
+  color: #555;
+}
+
+button {
+  padding: 8px 16px;
+  background: #2b579a;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  font-size: 14px;
+  cursor: pointer;
+  align-self: flex-start;
+}
+
+button:hover {
+  background: #1e3f72;
+}
+
+button.secondary {
+  background: #f0f0f0;
+  color: #333;
+}
+
+button.secondary:hover {
+  background: #e0e0e0;
+}
+
+hr {
+  border: none;
+  border-top: 1px solid #e8e8e8;
+}
+
+.last-saved-row {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+  font-size: 13px;
+}
+
+.last-saved-row .label {
+  color: #666;
+}
+
+.last-saved-row .value {
+  font-weight: 500;
+}
+
+.status {
+  font-size: 13px;
+  color: #2b579a;
+  min-height: 18px;
+}
+
+.status.error {
+  color: #c00;
+}
