@@ -107,3 +107,9 @@ hr {
 .status.error {
   color: #c00;
 }
+
+.timer-status {
+  font-size: 12px;
+  color: #2a7a2a;
+  min-height: 16px;
+}

@@ -1,11 +1,19 @@
 /* global Office */
 
 Office.onReady(function () {
+  // Start the timer as soon as the taskpane loads — shared runtime keeps it
+  // alive after the taskpane is closed, so one open per session is enough.
+  if (typeof window.startAutoSave === "function") {
+    window.startAutoSave();
+  }
+
   populateInterval();
   populateLastSaved();
 
   document.getElementById("save-btn").addEventListener("click", applyInterval);
   document.getElementById("save-now-btn").addEventListener("click", saveNow);
+
+  updateTimerStatus();
 });
 
 function populateInterval() {
@@ -39,7 +47,8 @@ function applyInterval() {
 
   if (typeof window.restartWithNewInterval === "function") {
     window.restartWithNewInterval(ms);
-    showStatus("Auto-save set to every " + minutes + " minute" + (minutes === 1 ? "" : "s") + ".");
+    showStatus("Interval updated.");
+    updateTimerStatus();
   } else {
     showStatus("Could not update interval — shared runtime not ready.", true);
   }
@@ -56,6 +65,15 @@ function saveNow() {
   } else {
     showStatus("Save function not available.", true);
   }
+}
+
+function updateTimerStatus() {
+  var el = document.getElementById("timer-status");
+  if (!el) return;
+  var stored = localStorage.getItem("autoSave_intervalMs");
+  var ms = stored ? parseInt(stored, 10) : 5 * 60 * 1000;
+  var minutes = Math.round(ms / 60000);
+  el.textContent = "Timer active — saving every " + minutes + " minute" + (minutes === 1 ? "" : "s") + ".";
 }
 
 function showStatus(message, isError) {

@@ -53,6 +53,7 @@ function getIntervalMs() {
 }
 
 if (typeof window !== "undefined") {
+  window.startAutoSave = startAutoSave;
   window.restartWithNewInterval = restartWithNewInterval;
   window.performSave = performSave;
 }
