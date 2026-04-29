@@ -1,8 +1,10 @@
 /* global Office */
 
 Office.onReady(function () {
-  // Start the timer as soon as the taskpane loads — shared runtime keeps it
-  // alive after the taskpane is closed, so one open per session is enough.
+  // Persist "load on startup" so Word auto-starts this add-in on every document
+  // open from now on — user only needs to open the taskpane once ever.
+  Office.addin.setStartupBehavior(Office.StartupBehavior.load);
+
   if (typeof window.startAutoSave === "function") {
     window.startAutoSave();
   }

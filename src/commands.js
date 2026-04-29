@@ -1,8 +1,7 @@
 /* global Office, Word */
 
-Office.onReady(function () {
-  Office.actions.associate("onDocOpen", onDocOpen);
-});
+// Must be at top level (not inside Office.onReady) for OnDocumentOpened to fire
+Office.actions.associate("onDocOpen", onDocOpen);
 
 var autoSaveTimer = null;
 
