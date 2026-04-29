@@ -26,21 +26,13 @@ function startAutoSave() {
 
 function performSave() {
   Word.run(function (context) {
-    var doc = context.document;
-    context.load(doc, "saved, url");
+    context.document.save();
     return context.sync().then(function () {
-      // Skip save if document has never been saved to disk (no URL = unsaved new document)
-      if (!doc.url || doc.url === "") {
-        return;
-      }
-      doc.save();
-      return context.sync().then(function () {
-        var timestamp = new Date().toISOString();
-        localStorage.setItem("autoSave_lastSaved", timestamp);
-      });
+      localStorage.setItem("autoSave_lastSaved", new Date().toISOString());
     });
   }).catch(function (err) {
-    console.error("Auto-save failed:", err);
+    // New unsaved documents will throw here — that's fine, just ignore
+    console.warn("Auto-save skipped or failed:", err.message || err);
   });
 }
 
@@ -60,8 +52,6 @@ function getIntervalMs() {
   return 5 * 60 * 1000; // default: 5 minutes
 }
 
-// Expose for taskpane.js access via shared runtime
-/* global restartWithNewInterval, performSave */
 if (typeof window !== "undefined") {
   window.restartWithNewInterval = restartWithNewInterval;
   window.performSave = performSave;
